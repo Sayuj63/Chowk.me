@@ -1,30 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import BentoLayout from '../../components/BentoLayout';
 import BentoProfileCard from '../../components/BentoProfileCard';
-import PostCard from '../../components/PostCard';
-import SocialMediaGrid from '../../components/SocialMediaGrid';
-import { getUserData, getUserPosts } from '../../utils/dataUtils';
-
-const Section = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  width: 100%;
-`;
-
-const SectionTitle = styled.h2`
-  font-size: 24px;
-  font-weight: 600;
-  color: #111827;
-  margin: 0;
-`;
+import { getUserData } from '../../utils/dataUtils';
+import MBGApp from './mbg_src/App.jsx';
 
 const Profile = () => {
   const { username } = useParams();
   const userData = getUserData(username);
-  const userPosts = getUserPosts(username);
 
   if (!userData) {
     return (
@@ -42,29 +25,7 @@ const Profile = () => {
   return (
     <BentoLayout
       leftColumn={<BentoProfileCard username={username} />}
-      rightColumn={
-        <div className="flex flex-col gap-6">
-          <SocialMediaGrid username={username} />
-          <Section>
-            <SectionTitle>Posts</SectionTitle>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {userPosts.length > 0 ? (
-                userPosts.map((post, index) => (
-                  <PostCard
-                    key={post.id || index}
-                    post={post}
-                    variant="portrait"
-                  />
-                ))
-              ) : (
-                <div className="col-span-full text-center py-8 text-gray-500">
-                  No posts yet
-                </div>
-              )}
-            </div>
-          </Section>
-        </div>
-      }
+      rightColumn={<MBGApp />}
     />
   );
 };
