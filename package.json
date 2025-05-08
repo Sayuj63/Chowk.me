@@ -20,7 +20,10 @@
     "react-scripts": "5.0.1",
     "styled-components": "^6.1.17",
     "tailwindcss": "^3.3.3",
-    "web-vitals": "^4.2.4"
+    "web-vitals": "^4.2.4",
+    "react-grid-layout": "^1.5.1",
+    "react-resizable": "^3.0.5",
+    "react-draggable": "^4.4.6"
   },
   "scripts": {
     "start": "react-scripts start",
